@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=awesomewm-session
+Comment=Highly configurable framework window manager
+TryExec=/usr/bin/awesome-session
+Exec=/usr/bin/awesome-session
+Type=Application

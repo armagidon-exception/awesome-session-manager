@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# mark WM started so we don't re-enter
+if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then
+    echo "AweosomeWM is already started"
+    systemd-cat -p warning -t awesomewm-session <<<"Tried to start AwesomeWM session, but it's already started!"
+    exit
+fi
+
+xrdb -merge <<<"awesome.started:true"
+
+for unit in $(systemctl --user --no-legend --state=failed --plain list-units | cut -f1 -d' '); do
+    partof=$(systemctl --user show -p PartOf --value "$unit")
+    for target in awesome-session.target graphical-session.target; do
+        if [ "$partof" = "$target" ]; then
+            systemctl --user reset-failed "$unit"
+            break
+        fi
+    done
+done
+
+export XDG_CURRENT_DESKTOP=awesome
+
+source /etc/profile
+
+# save environment variables that will be added to systemd
+new_env=$(systemctl --user show-environment | cut -d'=' -f 1 | sort | comm -13 - <(env | cut -d'=' -f 1 | sort))
+
+# import environment variables from the login manager
+systemctl --user import-environment $new_env
+systemctl --user set-environment PATH="$PATH"
+
+systemd-cat -p info -t awesomewm-session <<<"Running with DISPLAY=$DISPLAY; XAUTHORITY=$XAUTHORITY; USER=$USER"
+
+systemd-cat -p info -t awesomewm-session <<<"Systemd environment: $(systemctl --user show-environment)"
+
+systemctl --wait --user start awesome.service
+
+# Autostart removed because using xdg-desktop-autostart.target

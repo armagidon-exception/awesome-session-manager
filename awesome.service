@@ -1,0 +1,13 @@
+[Unit]
+Description=AwesomeWM
+BindsTo=awesome-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
+Before=awesome-session.target
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/awesome
+Restart=on-failure
+RestartSec=1
+TimeoutStopSec=10
