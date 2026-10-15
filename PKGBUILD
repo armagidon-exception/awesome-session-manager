@@ -1,6 +1,6 @@
 # Maintainer: armagidon <armagidon@armagidon.dev>
 pkgname=awesome-session-manager-git
-pkgver=r3.5453d88
+pkgver=r4.438c54a
 pkgrel=1
 pkgdesc='Systemd user session management for AwesomeWM'
 arch=('any')

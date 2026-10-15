@@ -4,8 +4,7 @@ post_install() {
 
     Select "awesomewm-session" in your display manager (e.g. LightDM).
     Existing user sessions may need: systemctl --user daemon-reload
-    Optional XDG autostart:          systemctl --user enable xdg-desktop-autostart.target
-                                     systemctl --user add-wants awesome-session.target xdg-desktop-autostart.target
+    Optional XDG autostart:          systemctl --user add-wants awesome-session.target xdg-desktop-autostart.target
 EOF
 }
 

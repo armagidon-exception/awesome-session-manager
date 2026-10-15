@@ -29,10 +29,6 @@ Systemd user session management for AwesomeWM, modelled after
 5. (Optional) Enable XDG autostart, so applications that drop a desktop file in
    an autostart directory are started automatically:
 
-       systemctl --user enable xdg-desktop-autostart.target
-
-   To pull it into the AwesomeWM session, add the wants link:
-
        systemctl --user add-wants awesome-session.target xdg-desktop-autostart.target
 
 # Adding services to the session
