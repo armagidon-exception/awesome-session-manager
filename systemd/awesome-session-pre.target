@@ -1,0 +1,9 @@
+[Unit]
+Description=Session services which should run early before the AwesomeWM session is brought up
+Documentation=man:systemd.special(7)
+Requires=basic.target
+Before=awesome-session.target
+RefuseManualStart=yes
+StopWhenUnneeded=yes
+BindsTo=x11-session-pre.target
+Before=x11-session-pre.target

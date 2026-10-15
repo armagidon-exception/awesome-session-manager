@@ -1,0 +1,8 @@
+[Unit]
+Description=Session services which should run early before the X11 session is brought up
+Documentation=man:systemd.special(7)
+Requires=basic.target
+Before=x11-session.target
+RefuseManualStart=yes
+StopWhenUnneeded=yes
+BindsTo=graphical-session-pre.target

@@ -1,6 +1,8 @@
 [Unit]
-Description=AwesomeWM session
-Documentation=man:ssytemd.special(7)
-BindsTo=graphical-session.target
-Wants=graphical-session-pre.target
-After=graphical-session-pre.target
+Description=Current AwesomeWM user session
+Documentation=man:systemd.special(7)
+Requires=basic.target
+RefuseManualStart=yes
+StopWhenUnneeded=yes
+BindsTo=x11-session.target
+Before=x11-session.target

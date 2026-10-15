@@ -1,8 +1,9 @@
 [Unit]
 Description=AwesomeWM
+Documentation=man:awesome(1)
 BindsTo=awesome-session.target
-Wants=graphical-session-pre.target
-After=graphical-session-pre.target
+Wants=awesome-session-pre.target
+After=awesome-session-pre.target
 Before=awesome-session.target
 
 [Service]

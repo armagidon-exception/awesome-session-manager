@@ -1,0 +1,7 @@
+[Unit]
+Description=Current X11 user session
+Documentation=man:systemd.special(7)
+Requires=basic.target
+RefuseManualStart=yes
+StopWhenUnneeded=yes
+BindsTo=graphical-session.target
