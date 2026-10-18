@@ -25,6 +25,7 @@ new_env=$(systemctl --user show-environment | cut -d'=' -f 1 | sort | comm -13 -
 
 # import environment variables from the login manager
 systemctl --user import-environment $new_env
+systemctl --user import-environment PATH
 
 # then start the service
 systemctl --wait --user start awesome.service
